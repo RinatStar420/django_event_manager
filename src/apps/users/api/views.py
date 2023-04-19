@@ -8,15 +8,5 @@ from ..models import User
 
 
 class UserCreateView(CreateAPIView):
-    queryset = User.objects.all()
-    # serializer_class = UserCreateSerializer
-    # permission_classes = [AllowAny]
+    serializer_class = UserCreateSerializer
 
-
-    # Объявление метода для создания нового пользователя
-    def post(self, request, *args, **kwargs):
-        def post(self, request, *args, **kwargs):
-            serializer = self.get_serializer(data=request.data)
-            serializer.is_valid(raise_exception=True)
-            serializer.save()
-            return Response(data=request.data, status=status.HTTP_201_CREATED)

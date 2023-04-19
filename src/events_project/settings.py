@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # my apps
     'apps.events',
     'apps.users',
+    'apps.api_auth',
     # load apps
     'rest_framework',
     'django_extensions',

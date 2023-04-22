@@ -8,15 +8,37 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username', 'email',)
 
-class EventDateSerializer(serializers.ModelSerializer):
+
+class PriceSerializer(serializers.ModelSerializer):
     class Meta:
         model = EventDate
-        fields = ('start', 'end',)
+        fields = ( 'currency', 'amount',)
 
-class EventSerializer(serializers.ModelSerializer):
-    # event_dates = EventDateSerializer()
-    dates = EventDateSerializer(many=True, source='eventdate_set')
-    author = UserSerializer()
+
+class CreateDateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EventDate
+        fields = ('event', 'currency', 'amount', 'tickets', 'start', 'end',)
+
+
+class EventDateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = EventDate
+        fields = ('start', 'end', )
+
+
+
+class CreateEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ('title', 'author', 'description', 'location', 'dates',)
+        fields = ('title','author', 'description', 'location')
+
+
+class EventSerializer(serializers.ModelSerializer):
+    event_dates = EventDateSerializer(many=True, source='eventdate_set')
+    author = UserSerializer()
+
+    class Meta:
+        model = Event
+        fields = ('title', 'author', 'description', 'location', 'event_dates')

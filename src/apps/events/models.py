@@ -17,12 +17,15 @@ class EventDate(models.Model):
     tickets = models.PositiveSmallIntegerField()
     currency = models.CharField(max_length=3)
     amount = models.DecimalField(max_digits=7, decimal_places=2)
-    event = models.ForeignKey(Event, on_delete=models.PROTECT)
+    event = models.ForeignKey(Event, on_delete=models.PROTECT, related_name='dates')
     # придумать связи с моделью юзер для покупателей
     customers = models.ManyToManyField('users.User')
 
     def __str__(self):
         return f'{self.event}, {self.start}, {self.end}'
+
+
+    # constraint
 
 
 

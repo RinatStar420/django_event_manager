@@ -1,4 +1,5 @@
 from django.db import models
+from apps.events.const import Currencies
 
 
 class Event(models.Model):
@@ -15,7 +16,7 @@ class EventDate(models.Model):
     start = models.DateField()
     end = models.DateField()
     tickets = models.PositiveSmallIntegerField()
-    currency = models.CharField(max_length=3)
+    currency = models.CharField(max_length=3, choices=Currencies.choices)
     amount = models.DecimalField(max_digits=7, decimal_places=2)
     event = models.ForeignKey(Event, on_delete=models.PROTECT, related_name='dates')
     # придумать связи с моделью юзер для покупателей
@@ -25,7 +26,7 @@ class EventDate(models.Model):
         return f'{self.event}, {self.start}, {self.end}'
 
 
-    # constraint
+    # constraint для валюты и для дат
 
 
 

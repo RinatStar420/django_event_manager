@@ -1,8 +1,3 @@
-cheese_shop = []
+from django.db.models.functions import TruncDay, Now
 
-for i in cheese_shop:
-    print(i)
-    continue
-
-else:
-    print('shop is empty')
+print(TruncDay(Now).tzinfo)

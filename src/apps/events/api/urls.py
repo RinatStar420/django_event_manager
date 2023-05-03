@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import EventViewSet,CreateEvent #CreateDateView,
+# from .views import EventViewSet,CreateEvent, CreateDateView,
 
 urlpatterns = [
     # path('', EventViewSet.as_view()),

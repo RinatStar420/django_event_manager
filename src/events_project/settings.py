@@ -38,9 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # my apps
-    'apps.events',
-    'apps.users',
-    'apps.api_auth',
+    'src.apps.events',
+    'src.apps.users',
+    'src.apps.api_auth',
     # load apps
     'rest_framework',
     'django_extensions',
@@ -58,7 +58,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'events_project.urls'
+ROOT_URLCONF = 'src.events_project.urls'
 
 TEMPLATES = [
     {
@@ -76,7 +76,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'events_project.wsgi.application'
+WSGI_APPLICATION = 'src.events_project.wsgi.application'
 
 
 # Database

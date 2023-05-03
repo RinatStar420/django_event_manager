@@ -1,3 +1,1 @@
-from django.db.models.functions import TruncDay, Now
-
-print(TruncDay(Now).tzinfo)
+" poetry add django django-extensions django-filter djangorestframework djangorestframework-simplejwt drf-nested-routers "

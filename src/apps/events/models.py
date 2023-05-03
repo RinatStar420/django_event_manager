@@ -1,6 +1,6 @@
 from django.db import models
-from apps.events.const import Currencies
-from django.db.models import Q, F
+from src.apps.events.const import Currencies
+from django.db.models import Q, F, Count
 from django.utils import timezone
 
 
@@ -32,9 +32,13 @@ class EventDate(models.Model):
                 name="%(app_label)s_%(class)s_end_must_be_gte_start",
                 check=Q(end__gte=F('start')),
             ),
-            models.CheckConstraint(
-                name="%(app_label)s_%(class)s_start_must_be_gte_today",
-                check=Q(start__gte=timezone.now()),
-            )
+            # models.CheckConstraint(
+            #     name="%(app_label)s_%(class)s_start_must_be_gte_today",
+            #     check=Q(start__gte=timezone.now()),
+            # ),
+            # models.CheckConstraint(
+            #     name="%(app_label)s_%(class)s_customers_must_less_than_tickets",
+            #     check=Q(customers__count__lte=F('tickets'))
+            # ),
 
         ]

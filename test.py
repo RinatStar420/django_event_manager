@@ -1,1 +1,0 @@
-" poetry add django django-extensions django-filter djangorestframework djangorestframework-simplejwt drf-nested-routers "

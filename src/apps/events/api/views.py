@@ -29,7 +29,6 @@ class EventViewSet(
 ):
     queryset = Event.objects.all()
     filterset_class = EventFilter
-    permission_classes = [AllowAny]
 
     action_serializers = {
         'default': EventSerializer,
@@ -37,13 +36,13 @@ class EventViewSet(
 
     }
 
-    # def get_permissions(self):
-    #     if self.action == 'create':
-    #         self.permission_classes = [IsAuthenticated]
-    #         return self.permission_classes
-    #     else:
-    #         self.permission_classes = [AllowAny]
-    #     return super().get_permissions()
+    def get_permissions(self):
+        if self.action == ('create',):
+            self.permission_classes = [IsAuthenticated]
+            return self.permission_classes
+        else:
+            self.permission_classes = [AllowAny]
+        return super().get_permissions()
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
@@ -66,7 +65,7 @@ class EventDateViewSet(
 
     }
 
-    @action(detail=True, methods=["get"], url_path=r'buy', permission_classes=[AllowAny])
+    @action(detail=True, methods=["get"], url_path=r'buy', permission_classes=[IsAuthenticated])
     def buy(self, request, event_pk, pk):
         event_date = self.get_object()
         event_date.customers.add(request.user)

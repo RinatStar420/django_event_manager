@@ -15,7 +15,7 @@ class SerializerPerActionMixin:
         ), f"{self.__class__.__name__} needs to define an `action`"
 
         self.serializer_class = self.action_serializers.get(
-            self.action, self.action_serializers["default"]
+            self.action, self.action_serializers["default"],
         )
 
         return super().get_serializer_class()

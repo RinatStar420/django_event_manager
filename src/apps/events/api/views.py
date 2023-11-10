@@ -25,7 +25,8 @@ class EventViewSet(
     ListModelMixin,
     RetrieveModelMixin,
     CreateModelMixin,
-    GenericViewSet
+    GenericViewSet,
+
 ):
     queryset = Event.objects.all()
     filterset_class = EventFilter

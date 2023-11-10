@@ -8,13 +8,11 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username', 'email',)
 
-
 class CreateDateSerializer(serializers.ModelSerializer):
     class Meta:
         model = EventDate
         fields = ('event', 'currency', 'amount', 'tickets', 'start', 'end',)
         extra_kwargs = {'event': {'read_only': True}}
-
 
 class EventDateSerializer(serializers.ModelSerializer):
     price = serializers.SerializerMethodField()
@@ -28,11 +26,9 @@ class EventDateSerializer(serializers.ModelSerializer):
     def get_price(self, obj):
         return {'currency': obj.currency, 'amount': obj.amount}
 
-
     class Meta:
         model = EventDate
         fields = ('pk', 'start', 'end', 'price', 'tickets', 'tickets_left',)
-
 
 class EventSerializer(serializers.ModelSerializer):
     event_dates = EventDateSerializer(many=True, source='dates')
@@ -46,4 +42,4 @@ class EventSerializer(serializers.ModelSerializer):
 class CreateEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ('title', 'author','description', 'location')
+        fields = ('pk', 'title', 'description', 'location')
